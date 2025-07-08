@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "default.Profile.Picture",
+    "type": "java.lang.String",
+    "description": "A description for 'default.Profile.Picture'"
+  },
+  {
+    "name": "defaultProfile.picture",
+    "type": "java.lang.String",
+    "description": "A description for 'defaultProfile.picture'"
+  },
+  {
+    "name": "defaultProfile.picture",
+    "type": "java.lang.String",
+    "description": "A description for 'defaultProfile.picture'"
+  },
+  {
+    "name": "app.defaultProfilePicture",
+    "type": "java.lang.String",
+    "description": "A description for 'app.defaultProfilePicture'"
+  },
+  {
+    "name": "defaultProfile.picture",
+    "type": "java.lang.String",
+    "description": "A description for 'defaultProfile.picture'"
+  }
+]}
