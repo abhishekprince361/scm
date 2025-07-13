@@ -23,7 +23,7 @@
                         <p class="text-grey-500">This Contact will be stored on cloud, you can direct email this client
                             form scm...</p>
                         <form action="" class="mt-8" data-th-action="@{'/user/contacts/add'}"
-                            data-th-object="${contactForm}" method="post">
+                            data-th-object="${contactForm}" method="post" enctype="multipart/form-data">
                             <!--Name-->
                             <div class="mb-3">
                                 <label for="input-group-1"
@@ -127,7 +127,7 @@
                                     for="large_size">Contact Image</label>
                                 <input
                                     class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                    id="large_size" type="file">
+                                    data-th-field="*{contactImage}" type="file">
                             </div>
 
                             <!--fav checkbox-->
