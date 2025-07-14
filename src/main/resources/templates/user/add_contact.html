@@ -34,7 +34,7 @@
                                         class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
                                         <i class="fa-regular fa-user w-4 h-4"></i>
                                     </div>
-                                    <input data-th-field="*{name}" type="text" 
+                                    <input data-th-field="*{name}" type="text"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="name">
                                 </div>
@@ -54,7 +54,8 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="email@gmail.com">
                                 </div>
-                                <p class="text-red-500" data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}"></p>
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('email')}"
+                                    data-th-errors="*{email}"></p>
                             </div>
                             <!--Phone-->
                             <div class="mb-3">
@@ -70,7 +71,8 @@
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="000000000">
                                 </div>
-                                <p class="text-red-500" data-th-if="${#fields.hasErrors('phoneNumber')}" data-th-errors="*{phoneNumber}"></p>
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('phoneNumber')}"
+                                    data-th-errors="*{phoneNumber}"></p>
                             </div>
                             <!--Address-->
                             <div class="mb-3">
@@ -80,7 +82,8 @@
                                 <textarea data-th-field="*{address}" rows="4"
                                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Address of the Contact.."></textarea>
-                                    <p class="text-red-500" data-th-if="${#fields.hasErrors('address')}" data-th-errors="*{address}"></p>
+                                <p class="text-red-500" data-th-if="${#fields.hasErrors('address')}"
+                                    data-th-errors="*{address}"></p>
                             </div>
                             <!--Description-->
                             <div class="mb-3">
@@ -125,9 +128,11 @@
                             <div class="mb-3">
                                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                     for="large_size">Contact Image</label>
-                                <input
+                                <input id="image_file_input"
                                     class="block w-full mb-5 text-xs text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                                    data-th-field="*{contactImage}" type="file">
+                                    data-th-field="*{contactImage}" type="file" />
+
+                                <img class="max-h-52 mx-auto rounded-lg shadow m-3" src="" id="upload_image_preview" alt="">
                             </div>
 
                             <!--fav checkbox-->
@@ -150,6 +155,7 @@
             </div>
         </div>
     </div>
+    <script data-th-src="@{'/js/admin.js'}"></script>
     <script>
         console.log("This is a Dashboard page")
     </script>

@@ -33,6 +33,7 @@ public class Contact {
     private String phoneNumber;
     private String address;
     private String picture;
+    private String cloudinaryImagePublicId;
     @Column(length=5000)
     private String description;
     private boolean favorite = false;

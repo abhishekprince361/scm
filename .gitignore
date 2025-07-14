@@ -33,4 +33,4 @@ build/
 .vscode/
 
 /src/main/resources/application.properties
-src/main/java/com/scm/config/AppConfig.java
+src/main/resources/application-dev.properties
