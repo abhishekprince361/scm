@@ -22,15 +22,22 @@ public class RootController {
 
     @ModelAttribute
     public void addLoggedInUserInformation(Model model, Authentication authentication) {
-        if (authentication == null)
+        if (authentication == null){
             return;
+        }
 
+
+        System.out.println("Adding logged in user information to the model");
         String username = Helper.getEmailOfLoggedInUser(authentication);
+        logger.info("User logged in: {}", username);
         User user = userService.getUserByEmail(username);
+        System.out.println(user);
+        System.out.println(user.getName());
+        System.out.println(user.getEmail());
+
+
 
         model.addAttribute("loggedInUser", user);
-        logger.info("User logged in{}", username);
-
     }
 
 }

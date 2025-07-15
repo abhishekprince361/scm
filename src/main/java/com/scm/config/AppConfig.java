@@ -5,11 +5,14 @@ package com.scm.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+// import org.springframework.context.annotation.PropertySource;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
 @Configuration
+// @PropertySource("classpath:application-dev.properties")
+// we are using in properties file
 public class AppConfig {
 
     @Value("${cloudinary.cloud.name}")
