@@ -40,6 +40,7 @@ public class OAuthAuthenicationsuccessHandler implements AuthenticationSuccessHa
                 var oauth2AuthenicationToken = (OAuth2AuthenticationToken)authentication;
 
                 String authorizedClientRegistrationId = oauth2AuthenicationToken.getAuthorizedClientRegistrationId();
+                System.out.println(authorizedClientRegistrationId);
                 logger.info(authorizedClientRegistrationId);
 
                 var oauthUser = (DefaultOAuth2User) authentication.getPrincipal();
@@ -53,12 +54,13 @@ public class OAuthAuthenicationsuccessHandler implements AuthenticationSuccessHa
                 user.setRoleList(List.of(AppConstants.ROLE_USER));
                 user.setEmailVerified(true);
                 user.setEnabled(true);
+                user.setPassword("password");
 
 
                 if(authorizedClientRegistrationId.equalsIgnoreCase("google")){
 
                     user.setEmail(oauthUser.getAttribute("email").toString());
-                    user.setEmail(oauthUser.getAttribute("picture").toString());
+                    user.setProfilePic(oauthUser.getAttribute("picture").toString());
                     user.setName(oauthUser.getAttribute("name").toString());
                     user.setProviderUserId(oauthUser.getName());
                     user.setProvider(Providers.GOOGLE);
@@ -68,6 +70,10 @@ public class OAuthAuthenicationsuccessHandler implements AuthenticationSuccessHa
                 else if(authorizedClientRegistrationId.equalsIgnoreCase("github")){
 
                     String email = oauthUser.getAttribute("email")!=null ? oauthUser.getAttribute("email").toString() : oauthUser.getAttribute("login").toString()+"@gmail.com";
+
+                    System.out.println("*************");
+                    System.out.println(email);
+                    System.out.println("8888888888888");
                     String picture = oauthUser.getAttribute("avatar_url").toString();
                     String name = oauthUser.getAttribute("login").toString();
                     String providerUserId = oauthUser.getName();

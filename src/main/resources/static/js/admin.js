@@ -1,8 +1,8 @@
 console.log("admin user")
 
-document.querySelector("#image_file_input").addEventListener('change', function (event) {
+document.querySelector("#image_file_input").addEventListener("change", function (event) {
 
-    let file = event.target.file[0];
+    let file = event.target.files[0];
     let reader = new FileReader();
     reader.onload = function () {
         // document.getElementById("upload_image_preview").src = reader.result;
