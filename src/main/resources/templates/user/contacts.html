@@ -60,7 +60,8 @@
                             </div>
                         </form>
 
-                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <table data-th-if="${pageContact.totalElements>0}"
+                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
@@ -123,7 +124,7 @@
                         </table>
 
                         <!-- pagination conmponent -->
-                        <div class="pagiantion_conatiner bg-white dark:bg-gray-800 p-5 text-center">
+                        <div data-th-if="${pageContact.totalElements>0}" class="pagiantion_conatiner bg-white dark:bg-gray-800 p-5 text-center">
                             <nav aria-label="Page navigation example">
                                 <ul class="inline-flex -space-x-px text-base h-10">
                                     <li data-th-unless="${pageContact.first}">
@@ -150,7 +151,7 @@
 
                         </div>
 
-
+                        <h1 class="text-5xl text-center p-5" data-th-if="${pageContact.totalElements<=0}">Not result found</h1>
                     </div>
 
                 </div>
