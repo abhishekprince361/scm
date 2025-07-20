@@ -23,14 +23,15 @@
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
-                        <form data-th-object="${contactSearchForm}" action="" data-th-action="@{'/user/contacts/search'}">
+                        <form data-th-object="${contactSearchForm}" action=""
+                            data-th-action="@{'/user/contacts/search'}">
                             <div
                                 class="flex space-x-3 p-5 items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
 
                                 <!-- select box -->
                                 <div>
 
-                                    <select data-th-field="*{field}" id="countries_disabled" 
+                                    <select data-th-field="*{field}" id="countries_disabled"
                                         class="bg-gray-50 pr-8 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option selected value="">Select Field</option>
                                         <option value="name">Name</option>
@@ -55,13 +56,14 @@
                                         placeholder="Search for users">
                                 </div>
 
-                                <button type="submit" class="px-3 py-2 bg-gray-800 text-white rounded-lg">Search</button>
+                                <button type="submit"
+                                    class="px-3 py-2 bg-gray-800 text-white rounded-lg">Search</button>
 
                             </div>
                         </form>
 
                         <table data-th-if="${pageContact.totalElements>0}"
-                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                            class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead
                                 class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
@@ -115,7 +117,9 @@
                                         <div>
                                             <a href=""><i class="fa-solid w-6 h-6 fa-trash"></i></a>
                                             <a href=""><i class="fa-solid w-6 h-6 fa-pen"></i></a>
-                                            <a href=""><i class="fa-solid w-6 h-6 fa-eye"></i></a>
+                                            <button th:onclick="loadContactData([[${c.id}]])"><i
+                                                    class="fa-solid w-6 h-6 fa-eye"></i></button>
+                                            <!--  we can also use th:data-id = "${c.id}" th:onclick="loadContactData(this.getAttribute('data-id'))" -->
 
                                         </div>
                                     </td>
@@ -124,7 +128,8 @@
                         </table>
 
                         <!-- pagination conmponent -->
-                        <div data-th-if="${pageContact.totalElements>0}" class="pagiantion_conatiner bg-white dark:bg-gray-800 p-5 text-center">
+                        <div data-th-if="${pageContact.totalElements>0}"
+                            class="pagiantion_conatiner bg-white dark:bg-gray-800 p-5 text-center">
                             <nav aria-label="Page navigation example">
                                 <ul class="inline-flex -space-x-px text-base h-10">
                                     <li data-th-unless="${pageContact.first}">
@@ -151,14 +156,17 @@
 
                         </div>
 
-                        <h1 class="text-5xl text-center p-5" data-th-if="${pageContact.totalElements<=0}">Not result found</h1>
+                        <h1 class="text-5xl text-center p-5" data-th-if="${pageContact.totalElements<=0}">Not result
+                            found</h1>
                     </div>
 
                 </div>
 
             </div>
+            <div data-th-replace="~{user/contact_models::contact_modal}"></div>
         </div>
     </div>
+    <script data-th-src="@{'/js/contacts.js'}"></script>
     <script>
         console.log("This is a contacts page");
     </script>
