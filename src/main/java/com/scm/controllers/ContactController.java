@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -97,7 +98,7 @@ public class ContactController {
     @RequestMapping
     public String viewContacts(
             @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = AppConstants.PAGE_SIZE+"") int size,
+            @RequestParam(value = "size", defaultValue = AppConstants.PAGE_SIZE + "") int size,
             @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
             @RequestParam(value = "direction", defaultValue = "asc") String direction,
             Model model, Authentication authentication) {
@@ -115,36 +116,51 @@ public class ContactController {
         return "user/contacts";
     }
 
-    //Search
+    // Search
     @RequestMapping("/search")
     public String searchHandler(
-        @ModelAttribute ContactSearchForm contactSearchForm,
-        @RequestParam(value="size", defaultValue= AppConstants.PAGE_SIZE+"") int size,
-        @RequestParam(value="page", defaultValue = "0") int page,
-        @RequestParam(value="sortBy", defaultValue = "name") String sortBy,
-        @RequestParam(value="direction", defaultValue = "asc") String direction,
-        Authentication authentication,
-        Model model
-    ){
+            @ModelAttribute ContactSearchForm contactSearchForm,
+            @RequestParam(value = "size", defaultValue = AppConstants.PAGE_SIZE + "") int size,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "sortBy", defaultValue = "name") String sortBy,
+            @RequestParam(value = "direction", defaultValue = "asc") String direction,
+            Authentication authentication,
+            Model model) {
         var user = userService.getUserByEmail(Helper.getEmailOfLoggedInUser(authentication));
 
         Page<Contact> pageContact = null;
-        if (contactSearchForm.getField().equalsIgnoreCase("name")){
-            pageContact = contactService.searchByName(contactSearchForm.getValue(), size, page, sortBy, direction, user);
-        }else if(contactSearchForm.getField().equalsIgnoreCase("email")){
-            pageContact = contactService.searchByEmail(contactSearchForm.getValue(), size, page, sortBy, direction, user);
-        }else if(contactSearchForm.getField().equalsIgnoreCase("phone")){
-            pageContact = contactService.searchByPhoneNumber(contactSearchForm.getValue(), size, page, sortBy, direction, user);
+        if (contactSearchForm.getField().equalsIgnoreCase("name")) {
+            pageContact = contactService.searchByName(contactSearchForm.getValue(), size, page, sortBy, direction,
+                    user);
+        } else if (contactSearchForm.getField().equalsIgnoreCase("email")) {
+            pageContact = contactService.searchByEmail(contactSearchForm.getValue(), size, page, sortBy, direction,
+                    user);
+        } else if (contactSearchForm.getField().equalsIgnoreCase("phone")) {
+            pageContact = contactService.searchByPhoneNumber(contactSearchForm.getValue(), size, page, sortBy,
+                    direction, user);
         }
 
         model.addAttribute("contactSearchForm", contactSearchForm);
         model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
         model.addAttribute("pageContact", pageContact);
-        
 
         return "user/search";
     }
 
+    @RequestMapping("/delete/{contactId}")
+    public String deleteContact(
+            @PathVariable("contactId") String contactId,
+            HttpSession session) {
+        contactService.delete(contactId);
+        logger.info("contact {} deleted", contactId);
 
+        session.setAttribute("message",
+                Message.builder()
+                .content("Contact is Deleted successfully !!")
+                .type(MessageType.yellow)
+                .build());
+
+        return "redirect:/user/contacts";
+    }
 
 }

@@ -25,6 +25,8 @@
 
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
+                    <div data-th-replace="~{message::messagebox}"></div>
+
                     <form data-th-object="${contactSearchForm}" data-th-action="@{'/user/contacts/search'}">
                         <div
                             class="flex space-x-3 p-5 items-center justify-start flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
@@ -89,13 +91,13 @@
                                     class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
 
                                     <!-- if onerror having error then contact page reloading constantly -->
-                                    <img class="w-10 h-10 rounded-full" data-th-src="@{*{picture}}" src="" alt=""
+                                    <img class="w-10 h-10 rounded-full" data-th-src="@{*{picture}}" src="/images/account.png" alt=""
                                         onerror="this.src='/images/account.png'" />
 
 
                                     <div class="ps-3">
-                                        <div class="text-base font-semibold" data-th-text="*{name}"></div>
-                                        <div class="font-normal text-gray-500" data-th-text="*{email}"></div>
+                                        <div class="text-base font-semibold" data-th-text="*{name}">princeInSearch</div>
+                                        <div class="font-normal text-gray-500" data-th-text="*{email}">princeInSearch@gmail.com</div>
                                     </div>
                                 </th>
                                 <td class="px-6 py-4">
@@ -114,9 +116,10 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div>
-                                        <a href=""><i class="fa-solid w-6 h-6 fa-trash"></i></a>
+                                        <button th:onclick="deleteContact([[${c.id}]])"><i class="fa-solid w-6 h-6 fa-trash"></i></button>
                                         <a href=""><i class="fa-solid w-6 h-6 fa-pen"></i></a>
-                                        <a href=""><i class="fa-solid w-6 h-6 fa-eye"></i></a>
+                                        <button th:onclick="loadContactData([[${c.id}]])"><i
+                                                    class="fa-solid w-6 h-6 fa-eye"></i></button>
 
                                     </div>
                                 </td>
@@ -157,9 +160,11 @@
                 </div>
 
             </div>
+            <div data-th-replace="~{user/contact_models::contact_modal}"></div>
 
         </div>
     </div>
+    <script data-th-src="@{'/js/contacts.js'}"></script>
     <script>
         console.log("This is a Dashboard page")
     </script>
