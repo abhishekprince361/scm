@@ -38,5 +38,6 @@ public class ContactForm {
 
     
     private MultipartFile contactImage;
+    private String picture;
 
 }
