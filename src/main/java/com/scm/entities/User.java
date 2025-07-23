@@ -63,6 +63,7 @@ public class User implements UserDetails{
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roleList = new ArrayList<>();
 
+    private String emailToken;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -77,6 +78,11 @@ public class User implements UserDetails{
     public String getUsername() {
         return this.email;
     }
+
+    @Override
+    public boolean isEnabled() {
+      return false;
+   }
 
     
 

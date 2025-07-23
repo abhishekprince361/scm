@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+
 import com.scm.services.impl.SecurityCustomeUserDetailsService;
 
 @Configuration
@@ -19,6 +21,9 @@ public class SecurityConfig {
 
     @Autowired
     private OAuthAuthenicationsuccessHandler oAuthAuthenicationsuccessHandler;
+
+    @Autowired
+    private AuthFailureHandler authFailureHandler;
 
     // @Bean
     // private UserDetailsService userDetailsService(){
@@ -94,6 +99,7 @@ public class SecurityConfig {
              * 
              * });
              */
+            formLogin.failureHandler(authFailureHandler);
         });
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable);

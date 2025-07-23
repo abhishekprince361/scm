@@ -18,10 +18,13 @@
                 <div class="col-span-12 md:col-span-6 ">
                     <div
                         class="card block p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                        <div data-th-replace="~{message::messagebox}"></div>
+                        
                         <h1 class="text-2xl font-semibold">Update Contact</h1>
+                        <div>
+                        <div data-th-replace="~{message::messagebox}"></div>
+                        </div>
                        
-                        <form class="mt-8" data-th-action="@{'/user/contacts/update'+${contactId}}"
+                        <form class="mt-8" data-th-action="@{'/user/contacts/update/'+${contactId}}"
                             data-th-object="${contactForm}" method="post" enctype="multipart/form-data">
                             <!--Name-->
                             <div class="mb-3">

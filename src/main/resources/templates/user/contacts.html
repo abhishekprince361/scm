@@ -119,7 +119,7 @@
                                         <div>
                                             <!-- <a data-th-href="@{'user/contacts/delete/'+*{id}}"><i class="fa-solid w-6 h-6 fa-trash"></i></a> -->
                                             <button th:onclick="deleteContact([[${c.id}]])" ><i class="fa-solid w-6 h-6 fa-trash"></i></button>
-                                            <a data-th-href="@{'user/contacts/view/'+*{id}}"><i class="fa-solid w-6 h-6 fa-pen"></i></a>
+                                            <a data-th-href="@{'/user/contacts/view/'+*{id}}"><i class="fa-solid w-6 h-6 fa-pen"></i></a>
                                             <button th:onclick="loadContactData([[${c.id}]])"><i
                                                     class="fa-solid w-6 h-6 fa-eye"></i></button>
                                             <!--  we can also use th:data-id = "${c.id}" th:onclick="loadContactData(this.getAttribute('data-id'))" -->

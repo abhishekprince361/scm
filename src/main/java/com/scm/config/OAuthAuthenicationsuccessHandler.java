@@ -71,9 +71,7 @@ public class OAuthAuthenicationsuccessHandler implements AuthenticationSuccessHa
 
                     String email = oauthUser.getAttribute("email")!=null ? oauthUser.getAttribute("email").toString() : oauthUser.getAttribute("login").toString()+"@gmail.com";
 
-                    System.out.println("*************");
-                    System.out.println(email);
-                    System.out.println("8888888888888");
+                    
                     String picture = oauthUser.getAttribute("avatar_url").toString();
                     String name = oauthUser.getAttribute("login").toString();
                     String providerUserId = oauthUser.getName();

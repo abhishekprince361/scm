@@ -71,13 +71,13 @@ public class ContactController {
         User user = userService.getUserByEmail(username);
 
         Contact contact = new Contact();
-        contact.setUser(user);
         contact.setName(contactForm.getName());
         contact.setEmail(contactForm.getEmail());
         contact.setPhoneNumber(contactForm.getPhoneNumber());
         contact.setAddress(contactForm.getAddress());
         contact.setDescription(contactForm.getDescription());
         contact.setFavorite(contactForm.isFavorite());
+        contact.setUser(user);
         contact.setLinkedInLink(contactForm.getLinkedInLink());
         contact.setWebsiteLink(contactForm.getWebsiteLink());
 
@@ -212,6 +212,8 @@ public class ContactController {
             contact.setCloudinaryImagePublicId(fileName);
             contact.setPicture(imageUrl);
             contactForm.setPicture(imageUrl);
+        }else{
+            logger.info("file is empty");
         }
 
         var updatedContact = contactService.update(contact);
