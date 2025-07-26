@@ -37,11 +37,14 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         user.setRoleList(List.of(AppConstants.ROLE_USER));
-        User savedUser = userRepo.save(user);
+        
         String emailToken = UUID.randomUUID().toString();
+        user.setEmailToken(emailToken);
+        User savedUser = userRepo.save(user);
         String emailLink = Helper.getLinkForEmailVerification(emailToken);
-
         emailService.sendEmail(savedUser.getEmail(), "Verify Account : Smart Contact Manager", emailLink);
+
+
         return savedUser;
     }
 
